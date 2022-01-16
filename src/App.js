@@ -1,21 +1,13 @@
-import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GameMenu from "./components/GameMenu";
 
 function App() {
   return (
-    <div>
-      <header>
-        <nav
-          style={{
-            borderBottom: "solid 1px",
-            paddingBottom: "1rem",
-          }}
-        >
-          <Link to="/invoices">Invoices</Link> |{" "}
-          <Link to="/expenses">Expenses</Link>
-        </nav>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<GameMenu />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

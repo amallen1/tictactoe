@@ -6,8 +6,8 @@ export const GlobalStyles = createGlobalStyle`${css`
     --lightGreenHover: #31c3bd;
     --lightYellow: #ffc860;
     --lightYellowHover: #f2b137;
-    --silver: #dbe8ed;
-    --silverHover: #a8bfc9;
+    --silver: #a8bfc9;
+    --silverHover: #dbe8ed;
     --semiDarkNavy: #1f3641;
     --darkNavy: #1a2a33;
   }
@@ -27,13 +27,17 @@ export const GlobalStyles = createGlobalStyle`${css`
 
   img {
     max-width: 100%;
-    display: block;
+    /* display: block; */
   }
 
   body {
     min-height: 100vh;
-    background-color: pink;
+    background-color: var(--darkNavy);
     font-family: "Outfit", sans-serif;
+  }
+
+  #root {
+    min-height: 100vh;
   }
 `}
 `;
