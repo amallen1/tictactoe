@@ -2,20 +2,39 @@ import { createGlobalStyle, css } from "styled-components/macro";
 
 export const GlobalStyles = createGlobalStyle`${css`
   :root {
-    --lightGreen: #65e9e4;
-    --lightGreenHover: #31c3bd;
-    --lightYellow: #ffc860;
-    --lightYellowHover: #f2b137;
+    --lightGreen: #31c3bd;
+    --lightGreenHover: #65e9e4;
+    --lightGreenShadow: rgba(17, 140, 135, 1);
+    --lightYellow: #f2b137;
+    --lightYellowHover: #ffc860;
+    --lightYellowShadow: rgba(204, 139, 19, 1);
     --silver: #a8bfc9;
     --silverHover: #dbe8ed;
     --semiDarkNavy: #1f3641;
     --darkNavy: #1a2a33;
+    --semiSilver: rgba(168, 191, 201, 0.05);
   }
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--darkNavy);
+    font-family: "Outfit", sans-serif;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 20px;
+    letter-spacing: 1.25px;
+  }
+
+  #root {
+    min-height: 100vh;
   }
 
   input,
@@ -30,14 +49,9 @@ export const GlobalStyles = createGlobalStyle`${css`
     /* display: block; */
   }
 
-  body {
-    min-height: 100vh;
-    background-color: var(--darkNavy);
-    font-family: "Outfit", sans-serif;
-  }
-
-  #root {
-    min-height: 100vh;
+  button {
+    background-color: transparent;
+    cursor: pointer;
   }
 `}
 `;
