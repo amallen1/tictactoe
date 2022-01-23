@@ -12,7 +12,11 @@ export const GlobalStyles = createGlobalStyle`${css`
     --silverHover: #dbe8ed;
     --semiDarkNavy: #1f3641;
     --darkNavy: #1a2a33;
+    --darkNavyShadow: rgba(16, 33, 42, 1);
     --semiSilver: rgba(168, 191, 201, 0.05);
+    --grayShadow: rgba(107, 137, 151, 1);
+
+    --markImage: url("./assets/icon-x-outline.svg");
   }
 
   * {
