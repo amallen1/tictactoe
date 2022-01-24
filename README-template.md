@@ -15,7 +15,6 @@ This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
-
 ## Overview
 
 ### The challenge
@@ -50,15 +49,9 @@ Users should be able to:
 - [Next.js](https://nextjs.org/) - React framework
 - [Styled Components](https://styled-components.com/) - For styles
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
-
 ### What I learned
 
-
-
 ### Continued development
-
-
 
 ### Useful resources
 
@@ -67,7 +60,7 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - [Add your name here](https://www.aniyaallen.com/)
+- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/amallen1)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+

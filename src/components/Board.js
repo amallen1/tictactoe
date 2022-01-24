@@ -16,13 +16,41 @@ const Row = styled.div`
 `;
 
 const Board = () => {
-  const { gameBoard, setGameBoard } = useContext(GameContext);
+  const { currPlayer, setCurrPlayer, gameBoard, setGameBoard } =
+    useContext(GameContext);
+
+  const handleClick = () => {
+    // if (value === null) {
+    //   // console.log("empty location");
+    //   // gameBoard[index] = currPlayer;
+    //   // setGameBoard(gameBoard);
+    //   // setIsEmpty(!isEmpty);
+    //   //alternates the players
+    //   // if (currPlayer === "X") {
+    //   //   setCurrPlayer("O");
+    //   // } else {
+    //   //   setCurrPlayer("X");
+    //   // }
+    //   //if it is empty, the current player can place their mark here
+    //   //the mark in this case would be an image that matches the currplayer mark
+    //   //the current player changes
+    // } else {
+    //   console.log("not empty location");
+    // }
+  };
 
   return (
     <RowContainer>
       <Row>
-        {gameBoard.map((section) => {
-          return <Square />;
+        {gameBoard.map((index) => {
+          return (
+            <Square
+              value={gameBoard[index]}
+              key={index}
+              index={index}
+              handleClick={handleClick}
+            />
+          );
         })}
       </Row>
     </RowContainer>

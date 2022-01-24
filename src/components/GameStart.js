@@ -6,7 +6,7 @@ import { StyledButton } from "./Button";
 import { GameContext } from "../contexts/GameContext";
 import { Link } from "react-router-dom";
 
-const Row = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,16 +54,28 @@ const Score = styled.div`
 `;
 
 const GameStart = () => {
-  const { currPlayer } = useContext(GameContext);
+  const { currPlayer, setCurrPlayer, setGameBoard } = useContext(GameContext);
+  const [xScore, setXScore] = useState(0);
+  const [oScore, setOScore] = useState(0);
+  const [ties, setTies] = useState(0);
 
   useEffect(() => {
     console.log("Curr player is: " + currPlayer);
   }, [currPlayer]);
 
+  //works properly
+  const resetGameScore = () => {
+    // setGameBoard(Array(9).fill(null));
+    setCurrPlayer("X");
+    setXScore(0);
+    setOScore(0);
+    setTies(0);
+  };
+
   return (
     <ScreenContainer>
       <GameContainer>
-        <Row>
+        <Header>
           <div>
             <Link to="/">
               <img src="./assets/logo.svg" alt="Logo" />
@@ -79,10 +91,10 @@ const GameStart = () => {
             Turn
           </Turn>
 
-          <ResetButton>
+          <ResetButton onClick={resetGameScore}>
             <img src="./assets/icon-restart.svg" alt="Restart button" />
           </ResetButton>
-        </Row>
+        </Header>
 
         <div>
           <Board />
@@ -90,15 +102,15 @@ const GameStart = () => {
           <ScoreContainer>
             <Score bgcolor={"var(--lightGreen)"}>
               <span> X (You)</span>
-              <h4>0</h4>
+              <h4>{xScore}</h4>
             </Score>
             <Score bgcolor={"var(--silver)"}>
               <span> Ties</span>
-              <h4>0</h4>
+              <h4>{ties}</h4>
             </Score>
             <Score bgcolor={"var(--lightYellow)"}>
               <span>O (Cpu)</span>
-              <h4>0</h4>
+              <h4>{oScore}</h4>
             </Score>
           </ScoreContainer>
         </div>
