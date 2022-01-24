@@ -2,7 +2,10 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components/macro";
 import { GameContext } from "../contexts/GameContext";
 
-const Button = styled.div`
+const Container = styled.span``;
+
+const Button = styled.button`
+  border: none;
   background-color: var(--semiDarkNavy);
   box-shadow: inset 0px -8px 0 0 var(--darkNavyShadow);
   padding: 2rem 1.75rem;
@@ -29,21 +32,28 @@ const Button = styled.div`
   }
 `;
 
-const Square = ({ handleClick }) => {
-  const { currPlayer, setCurrPlayer, gameBoard, setGameBoard } =
-    useContext(GameContext);
-
-  const [isEmpty, setIsEmpty] = useState(true);
+const Square = ({ handleClick, index }) => {
+  const { currPlayer, gameBoard } = useContext(GameContext);
 
   return (
     <div>
       {currPlayer === "X" ? (
-        <Button markImage={"./assets/icon-x-outline.svg"} onClick={handleClick}>
-          {isEmpty ? null : <img src="./assets/icon-x.svg" alt="x mark" />}
+        <Button
+          markImage={"./assets/icon-x-outline.svg"}
+          onClick={() => handleClick(index)}
+        >
+          {gameBoard[index] ? (
+            <img src="./assets/icon-x.svg" alt="x mark" />
+          ) : null}
         </Button>
       ) : (
-        <Button markImage={"./assets/icon-o-outline.svg"} onClick={handleClick}>
-          {isEmpty ? null : <img src="./assets/icon-o.svg" alt="o mark" />}
+        <Button
+          markImage={"./assets/icon-o-outline.svg"}
+          onClick={() => handleClick(index)}
+        >
+          {gameBoard[index] ? (
+            <img src="./assets/icon-o.svg" alt="o mark" />
+          ) : null}
         </Button>
       )}
     </div>

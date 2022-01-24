@@ -65,7 +65,7 @@ const GameStart = () => {
 
   //works properly
   const resetGameScore = () => {
-    // setGameBoard(Array(9).fill(null));
+    setGameBoard(Array(9).fill(null));
     setCurrPlayer("X");
     setXScore(0);
     setOScore(0);
