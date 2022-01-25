@@ -1,8 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components/macro";
 import { GameContext } from "../contexts/GameContext";
-
-const Container = styled.span``;
 
 const Button = styled.button`
   border: none;
@@ -32,30 +30,49 @@ const Button = styled.button`
   }
 `;
 
-const Square = ({ handleClick, index }) => {
+const Square = ({ handleClick, index, changePlayer }) => {
   const { currPlayer, gameBoard } = useContext(GameContext);
+
+  const xImage = "./assets/icon-x.svg";
+  const xOutlineImage = "./assets/icon-x-outline.svg";
+  const yImage = "./assets/icon-o.svg";
+  const yOutlineImage = "./assets/icon-o-outline.svg";
+
+  // console.log("Square " + index);
+
+  useEffect(() => {
+    // if (gameBoard[index]) {
+    //   changePlayer();
+    // }
+    console.log("2");
+  });
+
+  // console.log("square");
 
   return (
     <div>
-      {currPlayer === "X" ? (
+      {/* {
         <Button
-          markImage={"./assets/icon-x-outline.svg"}
+          markImage={currPlayer === "X" ? xOutlineImage : yOutlineImage}
           onClick={() => handleClick(index)}
         >
           {gameBoard[index] ? (
-            <img src="./assets/icon-x.svg" alt="x mark" />
+            <img src={currPlayer === "X" ? xImage : yImage} alt="Mark" />
           ) : null}
         </Button>
-      ) : (
-        <Button
-          markImage={"./assets/icon-o-outline.svg"}
-          onClick={() => handleClick(index)}
-        >
-          {gameBoard[index] ? (
-            <img src="./assets/icon-o.svg" alt="o mark" />
-          ) : null}
-        </Button>
-      )}
+      } */}
+
+      <Button
+        markImage={currPlayer === "X" ? xOutlineImage : yOutlineImage}
+        onClick={() => handleClick(index)}
+      >
+        {gameBoard[index] === "X" ? (
+          <img src="./assets/icon-x.svg" alt="Mark" />
+        ) : null}
+        {gameBoard[index] === "O" ? (
+          <img src="./assets/icon-o.svg" alt="Mark" />
+        ) : null}
+      </Button>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Square from "./Square";
 import styled from "styled-components/macro";
 import { GameContext } from "../contexts/GameContext";
@@ -22,29 +22,47 @@ const Row = styled.div`
 `;
 
 const Board = () => {
-  const { currPlayer, setCurrPlayer, gameBoard, setGameBoard } =
-    useContext(GameContext);
+  const {
+    currPlayer,
+    setCurrPlayer,
+    gameBoard,
+    setGameBoard,
+    xIsNext,
+    setXIsNext,
+  } = useContext(GameContext);
+
+  const [placed, setPlaced] = useState(false);
 
   const renderSquare = (i) => {
     return <Square index={i} handleClick={handleClick} />;
   };
+
+  useEffect(() => {
+    changePlayer();
+    console.log("1");
+  }, [gameBoard]);
+
+  const changePlayer = () => {
+    if (currPlayer === "X" && placed) {
+      setCurrPlayer("O");
+    } else {
+      setCurrPlayer("X");
+    }
+    console.log("hi");
+  };
+
   const handleClick = (i) => {
-    console.log(i);
+    console.log("The index of the square U clicked: " + i);
 
     if (gameBoard[i] === null) {
       //the spot in the board is empty
-      console.log("You can place something here!");
-      gameBoard[i] = currPlayer;
-      setGameBoard(gameBoard);
 
-      //alternates the players
-      if (currPlayer === "X") {
-        setCurrPlayer("O");
-      } else {
-        setCurrPlayer("X");
-      }
+      let board = [...gameBoard];
+      board[i] = currPlayer;
+      setGameBoard(board);
+      setPlaced(true);
     } else {
-      console.log("this spot is taken");
+      console.log("Cannot place marker here!");
     }
   };
 
