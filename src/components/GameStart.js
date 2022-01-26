@@ -54,9 +54,16 @@ const Score = styled.div`
 `;
 
 const GameStart = () => {
-  const { currPlayer, setCurrPlayer, setGameBoard } = useContext(GameContext);
-  const [xScore, setXScore] = useState(0);
-  const [oScore, setOScore] = useState(0);
+  const {
+    currPlayer,
+    setCurrPlayer,
+    setGameBoard,
+    setXScore,
+    xScore,
+    setOScore,
+    oScore,
+  } = useContext(GameContext);
+
   const [ties, setTies] = useState(0);
 
   useEffect(() => {

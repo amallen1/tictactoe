@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import styled, { css } from "styled-components/macro";
+import styled from "styled-components/macro";
 import { StyledButton } from "./Button";
 import { Link } from "react-router-dom";
 import { ScreenContainer, GameContainer } from "./Containers";
-import { GameContext } from "../contexts/GameContext";
+
 
 const Logo = styled.img`
   margin: 2rem auto;

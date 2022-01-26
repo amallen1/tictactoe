@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { GameContext } from "../contexts/GameContext";
 
@@ -6,7 +6,7 @@ const Button = styled.button`
   border: none;
   background-color: var(--semiDarkNavy);
   box-shadow: inset 0px -8px 0 0 var(--darkNavyShadow);
-  padding: 2rem 1.75rem;
+  padding: 1.5rem 1.75rem 2rem;
   height: 96px;
   width: 96px;
   border-radius: 15px;
@@ -16,6 +16,7 @@ const Button = styled.button`
   @media (min-width: 550px) {
     height: 140px;
     width: 140px;
+    padding: 2.375rem;
   }
 
   /* Desktop only should have this hovering feature */
@@ -25,46 +26,24 @@ const Button = styled.button`
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      content: url(${(props) => props.markImage});
+      content: url(${(props) => (props.disable ? null : props.hoverImage)});
     }
   }
 `;
 
-const Square = ({ handleClick, index, changePlayer }) => {
+const Square = ({ handleClick, index }) => {
   const { currPlayer, gameBoard } = useContext(GameContext);
-
-  const xImage = "./assets/icon-x.svg";
-  const xOutlineImage = "./assets/icon-x-outline.svg";
-  const yImage = "./assets/icon-o.svg";
-  const yOutlineImage = "./assets/icon-o-outline.svg";
-
-  // console.log("Square " + index);
-
-  useEffect(() => {
-    // if (gameBoard[index]) {
-    //   changePlayer();
-    // }
-    console.log("2");
-  });
-
-  // console.log("square");
 
   return (
     <div>
-      {/* {
-        <Button
-          markImage={currPlayer === "X" ? xOutlineImage : yOutlineImage}
-          onClick={() => handleClick(index)}
-        >
-          {gameBoard[index] ? (
-            <img src={currPlayer === "X" ? xImage : yImage} alt="Mark" />
-          ) : null}
-        </Button>
-      } */}
-
       <Button
-        markImage={currPlayer === "X" ? xOutlineImage : yOutlineImage}
+        hoverImage={
+          currPlayer === "X"
+            ? "./assets/icon-x-outline.svg"
+            : "./assets/icon-o-outline.svg"
+        }
         onClick={() => handleClick(index)}
+        disable={gameBoard[index] ? true : false}
       >
         {gameBoard[index] === "X" ? (
           <img src="./assets/icon-x.svg" alt="Mark" />

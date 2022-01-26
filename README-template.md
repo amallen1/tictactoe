@@ -41,26 +41,27 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
 - [Styled Components](https://styled-components.com/) - For styles
 
 ### What I learned
 
+I learned how to apply use effect a bit more critically. I learned how to use styled components a bit better because I was able to do things like dynamically rendering images based on props. It's something I never though I could do in styled components.
+
 ### Continued development
+
+- **Bonus 1**: Save the game state in the browser so that it’s preserved if the player refreshes their browser
+- **Bonus 2**: Instead of having the computer randomly make their moves, try making it clever so it’s proactive in blocking your moves and trying to win
 
 ### Useful resources
 
 - [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+
 
 ## Author
 
-- Website - [Add your name here](https://www.aniyaallen.com/)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/amallen1)
+- Website - [My personal website](https://www.aniyaallen.com/)
+- Frontend Mentor - [@amallen1](https://www.frontendmentor.io/profile/amallen1)
 
 

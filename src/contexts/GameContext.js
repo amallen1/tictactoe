@@ -5,19 +5,20 @@ export const GameContext = createContext();
 export const GameProvider = ({ children }) => {
   const [currPlayer, setCurrPlayer] = useState("X");
   const [gameBoard, setGameBoard] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
+  const [xScore, setXScore] = useState(0);
+  const [oScore, setOScore] = useState(0);
 
-  useEffect(() => {
-    // console.log(gameBoard);
-  }, [gameBoard]);
+  useEffect(() => {}, [gameBoard]);
 
   const value = {
     currPlayer,
     setCurrPlayer,
     gameBoard,
     setGameBoard,
-    xIsNext,
-    setXIsNext
+    xScore,
+    setXScore,
+    oScore,
+    setOScore,
   };
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
