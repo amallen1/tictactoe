@@ -5,6 +5,8 @@ import { ScreenContainer, GameContainer } from "./Containers";
 import { StyledButton } from "./Button";
 import { GameContext } from "../contexts/GameContext";
 import { Link } from "react-router-dom";
+import Message from "./Message/Message";
+import Overlay from "./Overlay";
 
 const Header = styled.div`
   display: flex;
@@ -62,12 +64,18 @@ const GameStart = () => {
     xScore,
     setOScore,
     oScore,
+    winner,
+    setWinner,
+    ties,
+    setTies,
   } = useContext(GameContext);
 
-  const [ties, setTies] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const toggleOverlay = () => {};
 
   useEffect(() => {
-    console.log("Curr player is: " + currPlayer);
+    // console.log("Curr player is: " + currPlayer);
   }, [currPlayer]);
 
   //works properly
@@ -77,10 +85,29 @@ const GameStart = () => {
     setXScore(0);
     setOScore(0);
     setTies(0);
+    setWinner(false);
+    setModalIsOpen(false);
+    //winner needs to be reset
+  };
+
+  const startNewRound = () => {
+    setGameBoard(Array(9).fill(null));
+    setCurrPlayer("X");
+    setWinner(false);
+    setModalIsOpen(false);
   };
 
   return (
     <ScreenContainer>
+      {modalIsOpen ? <Overlay toggle={toggleOverlay} /> : null}
+      {modalIsOpen ? (
+        <Message
+          winner={winner}
+          reset={resetGameScore}
+          newRound={startNewRound}
+        />
+      ) : null}
+
       <GameContainer>
         <Header>
           <div>
@@ -104,7 +131,7 @@ const GameStart = () => {
         </Header>
 
         <div>
-          <Board />
+          <Board setModal={setModalIsOpen} />
 
           <ScoreContainer>
             <Score bgcolor={"var(--lightGreen)"}>

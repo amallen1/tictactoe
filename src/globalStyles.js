@@ -15,8 +15,6 @@ export const GlobalStyles = createGlobalStyle`${css`
     --darkNavyShadow: rgba(16, 33, 42, 1);
     --semiSilver: rgba(168, 191, 201, 0.05);
     --grayShadow: rgba(107, 137, 151, 1);
-
-    --markImage: url("./assets/icon-x-outline.svg");
   }
 
   * {
@@ -37,20 +35,12 @@ export const GlobalStyles = createGlobalStyle`${css`
     letter-spacing: 1.25px;
   }
 
-  #root {
-    min-height: 100vh;
-  }
-
   input,
   button,
   textarea,
   select {
     font: inherit;
-  }
-
-  img {
-    max-width: 100%;
-    /* display: block; */
+    text-transform: uppercase;
   }
 
   button {
@@ -58,4 +48,5 @@ export const GlobalStyles = createGlobalStyle`${css`
     cursor: pointer;
   }
 `}
+
 `;

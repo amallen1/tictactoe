@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { StyledButton } from "./Button";
 import { Link } from "react-router-dom";
 import { ScreenContainer, GameContainer } from "./Containers";
-
+import { GameContext } from "../contexts/GameContext";
 
 const Logo = styled.img`
   margin: 2rem auto;
@@ -78,8 +78,8 @@ const Players = styled.div`
 `;
 
 const GameMenu = () => {
-  const [playerOne, setPlayerOne] = useState("X");
-  const [playerTwo, setPlayerTwo] = useState("O");
+  const { playerOne, playerTwo, setPlayerOne, setPlayerTwo } =
+    useContext(GameContext);
 
   const setPlayers = (mark) => {
     if (mark === "X") {
