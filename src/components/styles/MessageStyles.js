@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { StyledButton } from "../Button";
+import { StyledButton } from "./ButtonStyles";
 
 export const Container = styled.div`
   width: 100%;

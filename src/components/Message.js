@@ -1,37 +1,18 @@
-import React from "react";
-import { Container, WinMessage, Flex, Button } from "./MessageStyles";
+import React, { useContext } from "react";
+import { GameContext } from "../contexts/GameContext";
 import { Link } from "react-router-dom";
+import { Container, WinMessage, Flex, Button } from "./styles/MessageStyles";
 
-// const winMessage = "Oh no you lost";
-// const loseMessage = "You won!";
+const Message = ({ reset, newRound, winner }) => {
+  const { playerOne } = useContext(GameContext);
 
-/**
- * In this component, I need to know
- * WHO WON (Player 1 or Player 2)?
- * The marker of the winner
- *
- */
-
-const Message = ({ winner, reset, newRound }) => {
-  //correctly passes the winner
-  console.log("who be da winna?" + winner);
-  //needs to know what player O and X is
-  //we get that from GameMenu.js
-
-  if (winner === null) {
-    console.log("ITS A TIE HOE");
-  }
-
- 
   return (
     <Container>
-      {winner === null ? (
-        <Flex>
-          <p style={{ color: "var(--silver)" }}>Round tied</p>
-        </Flex>
-      ) : (
+      {winner ? (
         <div>
-          <WinMessage>Player wins!</WinMessage>
+          <WinMessage>
+            {winner === playerOne ? "Player 1 wins!" : "Player 2 wins!"}
+          </WinMessage>
           <Flex>
             {winner === "X" ? (
               <img height="28" src="./assets/icon-x.svg" alt="X mark" />
@@ -48,6 +29,10 @@ const Message = ({ winner, reset, newRound }) => {
             </p>
           </Flex>
         </div>
+      ) : (
+        <Flex>
+          <p style={{ color: "var(--silver)" }}>Round tied</p>
+        </Flex>
       )}
 
       <div>

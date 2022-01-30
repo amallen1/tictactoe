@@ -1,120 +1,108 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components/macro";
-import Board from "./Board";
-import { ScreenContainer, GameContainer } from "./Containers";
-import { StyledButton } from "./Button";
+import React, { useState, useContext } from "react";
 import { GameContext } from "../contexts/GameContext";
 import { Link } from "react-router-dom";
-import Message from "./Message/Message";
+import { ScreenContainer, GameContainer } from "./styles/ContainerStyles";
+import Board from "./Board";
+import Message from "./Message";
 import Overlay from "./Overlay";
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4rem;
-`;
-
-const Turn = styled.div`
-  background-color: var(--semiDarkNavy);
-  box-shadow: inset 0px -4px 0 0 var(--darkNavyShadow);
-  color: var(--silver);
-  padding: 9px 15px 13px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.88px;
-
-  img {
-    margin-right: 9px;
-  }
-`;
-
-const ResetButton = styled(StyledButton)`
-  background-color: var(--silver);
-  border-radius: 5px;
-  padding: 12px;
-  box-shadow: inset 0px -4px 0 0 var(--grayShadow);
-
-  :hover {
-    background-color: var(--silverHover);
-  }
-`;
-
-const ScoreContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Score = styled.div`
-  padding: 0.75rem 1.25rem;
-  border-radius: 10px;
-  background-color: ${(props) => props.bgcolor};
-  text-align: center;
-`;
+import {
+  Header,
+  Logo,
+  Turn,
+  ResetButton,
+  ScoreContainer,
+  Score,
+} from "./styles/GameStartStyles";
 
 const GameStart = () => {
-  const {
-    currPlayer,
-    setCurrPlayer,
-    setGameBoard,
-    setXScore,
-    xScore,
-    setOScore,
-    oScore,
-    winner,
-    setWinner,
-    ties,
-    setTies,
-  } = useContext(GameContext);
+  const { playerOne } = useContext(GameContext);
+  const [gameBoard, setGameBoard] = useState(Array(9).fill(null));
+  const [xScore, setXScore] = useState(0);
+  const [oScore, setOScore] = useState(0);
+  const [ties, setTies] = useState(0);
+  const [winner, setWinner] = useState(null);
+  const [currPlayer, setCurrPlayer] = useState("X");
+  const [gameOver, setGameOver] = useState(false);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const toggleOverlay = () => {};
-
-  useEffect(() => {
-    // console.log("Curr player is: " + currPlayer);
-  }, [currPlayer]);
-
-  //works properly
-  const resetGameScore = () => {
+  const resetGame = () => {
     setGameBoard(Array(9).fill(null));
     setCurrPlayer("X");
+
+    //reset the score
     setXScore(0);
     setOScore(0);
     setTies(0);
+
+    //reset game state
     setWinner(false);
-    setModalIsOpen(false);
-    //winner needs to be reset
+    setGameOver(false);
   };
 
   const startNewRound = () => {
     setGameBoard(Array(9).fill(null));
     setCurrPlayer("X");
     setWinner(false);
-    setModalIsOpen(false);
+    setGameOver(false);
+  };
+
+  const checkWinner = (board) => {
+    const patterns = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < patterns.length; i++) {
+      const [one, two, three] = patterns[i];
+
+      if (
+        board[one] &&
+        board[one] === board[two] &&
+        board[one] === board[three]
+      ) {
+        setWinner(board[one]);
+        console.log(`${board[one]} WON!`);
+
+        if (board[one] === "X") {
+          setXScore(xScore + 1);
+        } else {
+          setOScore(oScore + 1);
+        }
+
+        setGameOver(true);
+        return;
+      }
+    }
+
+    //returns true when there are no more spots in gameboard
+    let isEmpty = board.every((item) => item !== null);
+
+    if (isEmpty) {
+      setTies(ties + 1);
+      setGameOver(true);
+    }
   };
 
   return (
     <ScreenContainer>
-      {modalIsOpen ? <Overlay toggle={toggleOverlay} /> : null}
-      {modalIsOpen ? (
-        <Message
-          winner={winner}
-          reset={resetGameScore}
-          newRound={startNewRound}
-        />
+      {gameOver ? <Overlay /> : null}
+      {gameOver ? (
+        <Message reset={resetGame} newRound={startNewRound} winner={winner} />
       ) : null}
 
       <GameContainer>
         <Header>
-          <div>
-            <Link to="/">
+          <Logo>
+            <Link to="/" onClick={resetGame}>
               <img src="./assets/logo.svg" alt="Logo" />
             </Link>
-          </div>
+          </Logo>
 
           <Turn>
             {currPlayer === "X" ? (
@@ -125,17 +113,23 @@ const GameStart = () => {
             Turn
           </Turn>
 
-          <ResetButton onClick={resetGameScore}>
+          <ResetButton onClick={resetGame}>
             <img src="./assets/icon-restart.svg" alt="Restart button" />
           </ResetButton>
         </Header>
 
         <div>
-          <Board setModal={setModalIsOpen} />
+          <Board
+            gameBoard={gameBoard}
+            setGameBoard={setGameBoard}
+            checkWinner={checkWinner}
+            currPlayer={currPlayer}
+            setCurrPlayer={setCurrPlayer}
+          />
 
           <ScoreContainer>
             <Score bgcolor={"var(--lightGreen)"}>
-              <span> X (You)</span>
+              <span> X ({playerOne === "X" ? "P1" : "P2"})</span>
               <h4>{xScore}</h4>
             </Score>
             <Score bgcolor={"var(--silver)"}>
@@ -143,7 +137,7 @@ const GameStart = () => {
               <h4>{ties}</h4>
             </Score>
             <Score bgcolor={"var(--lightYellow)"}>
-              <span>O (Cpu)</span>
+              <span>O ({playerOne === "O" ? "P1" : "P2"})</span>
               <h4>{oScore}</h4>
             </Score>
           </ScoreContainer>

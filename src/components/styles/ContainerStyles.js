@@ -9,6 +9,9 @@ export const ScreenContainer = styled.div`
 `;
 
 export const GameContainer = styled.div`
-  width: 100%;
-  max-width: 460px;
+  max-width: 328px;
+
+  @media (min-width: 550px) {
+    max-width: 460px;
+  }
 `;

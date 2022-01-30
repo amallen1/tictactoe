@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components/macro";
 
 const Div = styled.div`
@@ -10,8 +10,8 @@ const Div = styled.div`
   z-index: 10;
 `;
 
-const Overlay = ({ toggle }) => {
-  return <Div onClick={toggle}></Div>;
+const Overlay = () => {
+  return <Div />;
 };
 
 export default Overlay;

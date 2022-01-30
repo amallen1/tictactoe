@@ -1,81 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components/macro";
-import { StyledButton } from "./Button";
-import { Link } from "react-router-dom";
-import { ScreenContainer, GameContainer } from "./Containers";
+import React, { useContext } from "react";
 import { GameContext } from "../contexts/GameContext";
-
-const Logo = styled.img`
-  margin: 2rem auto;
-  display: block;
-`;
-
-const ChoosePlayer = styled.div`
-  background-color: var(--semiDarkNavy);
-  border-radius: 15px;
-  box-shadow: inset 0px -8px 0 0 var(--darkNavyShadow);
-  padding: 1.5rem 1.5rem 1.875rem;
-  text-align: center;
-  margin-bottom: 2.5rem;
-
-  p {
-    color: var(--silver);
-    padding-bottom: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-`;
-
-const Notice = styled.span`
-  font-size: 0.875rem;
-  color: var(--silver);
-  opacity: 50%;
-  display: block;
-  margin: 1.0625rem 0 0;
-  letter-spacing: 0.88px;
-`;
-
-const MarkContainer = styled.div`
-  background-color: var(--darkNavy);
-  border-radius: 10px;
-  padding: 9px;
-  display: flex;
-  margin-bottom: 0.5rem;
-
-  button {
-    border-radius: 10px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 9px 0;
-    border: none;
-  }
-
-  button:first-child:hover {
-    background-color: var(--semiSilver);
-  }
-
-  button:last-child {
-    background-color: var(--silver);
-  }
-
-  button:last-child:hover {
-    background-color: var(--silverHover);
-  }
-`;
-
-const MarkButton = styled.button``;
-
-const Button = styled(StyledButton)`
-  width: 100%;
-  padding: 1.0625rem 0 1.5625rem;
-  margin-bottom: 1.25rem;
-`;
-
-const Players = styled.div`
-  p {
-    padding: 0.25rem;
-  }
-`;
+import { Link } from "react-router-dom";
+import { ScreenContainer, GameContainer } from "./styles/ContainerStyles";
+import {
+  Logo,
+  ChoosePlayer,
+  MarkContainer,
+  MarkButton,
+  Players,
+  Notice,
+  Button,
+} from "./styles/GameMenuStyles";
 
 const GameMenu = () => {
   const { playerOne, playerTwo, setPlayerOne, setPlayerTwo } =
@@ -91,13 +26,6 @@ const GameMenu = () => {
     }
   };
 
-  useEffect(() => {
-    if (playerOne === "X" || playerOne === "O") {
-      console.log("player 1 is " + playerOne);
-      console.log("player 2 is " + playerTwo);
-    }
-  }, [playerOne]);
-
   return (
     <ScreenContainer>
       <GameContainer>
@@ -109,11 +37,17 @@ const GameMenu = () => {
           <p>Pick Player 1's Mark</p>
 
           <MarkContainer>
-            <MarkButton onClick={() => setPlayers("X")}>
+            <MarkButton
+              onClick={() => setPlayers("X")}
+              bgcolor={"var(--semiSilver)"}
+            >
               <img height="32" src="./assets/silver-x.svg" alt="X mark" />
             </MarkButton>
 
-            <MarkButton onClick={() => setPlayers("O")}>
+            <MarkButton
+              onClick={() => setPlayers("O")}
+              bgcolor={"var(--silverHover)"}
+            >
               <img height="32" src="./assets/darknavy-o.svg" alt="O mark" />
             </MarkButton>
           </MarkContainer>
@@ -125,11 +59,11 @@ const GameMenu = () => {
         </ChoosePlayer>
 
         <Button
-          bgcolor="var(--lightYellow)"
-          hovercolor="var(--lightYellowHover)"
-          shadow="var(--lightYellowShadow)"
+          bgcolor="var(--silver)"
+          shadow="var(--grayShadow)"
+          disabled="initial"
         >
-          <h3>New Game (vs CPU)</h3>
+          <h3>(VS CPU) mode coming soon!</h3>
         </Button>
 
         <Link to="/gamestart">
