@@ -47,7 +47,7 @@ Users should be able to:
 
 ### What I learned
 
-I learned how to apply use effect a bit more critically. I learned how to use styled components a bit better because I was able to do things like dynamically rendering images based on props. It's something I never though I could do in styled components.
+I learned how to use styled components a bit better because I was able to do things like dynamically rendering images based on props. 
 
 ### Continued development
 
@@ -56,7 +56,7 @@ I learned how to apply use effect a bit more critically. I learned how to use st
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+
 
 
 ## Author
