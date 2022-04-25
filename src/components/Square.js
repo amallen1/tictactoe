@@ -13,12 +13,12 @@ const Square = ({ index, gameBoard, handleClick, currPlayer }) => {
         onClick={() => handleClick(index)}
         disable={gameBoard[index] ? true : false}
       >
-        {gameBoard[index] === "X" ? (
+        {gameBoard[index] === "X" && (
           <img src="./assets/icon-x.svg" alt="Mark" />
-        ) : null}
-        {gameBoard[index] === "O" ? (
+        )}
+        {gameBoard[index] === "O" && (
           <img src="./assets/icon-o.svg" alt="Mark" />
-        ) : null}
+        )}
       </Button>
     </div>
   );

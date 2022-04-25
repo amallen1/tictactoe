@@ -1,5 +1,7 @@
 # Frontend Mentor - Tic Tac Toe solution
 
+![Design preview for the Tic Tac Toe coding challenge](./preview.jpg)
+
 ## Welcome! 👋
 
 This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
@@ -33,7 +35,10 @@ Users should be able to:
 
 ### Screenshot
 
-![Design preview for the Tic Tac Toe coding challenge](./preview.jpg)
+| Mobile (375px)                                 | Desktop (1440px)                                 |
+| ---------------------------------------------- | ------------------------------------------------ |
+| ![Mobile](./screenshots/mobile_screenshot.png) | ![Desktop](./screenshots/desktop_screenshot.png) |
+
 
 ### Links
 

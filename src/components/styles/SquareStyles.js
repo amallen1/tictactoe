@@ -11,6 +11,16 @@ export const Button = styled.button`
   position: relative;
   cursor: pointer;
 
+  img {
+    height: 40px;
+    width: 40px;
+
+    @media (min-width: 550px) {
+      height: 64px;
+      width: 64px;
+    }
+  }
+
   @media (min-width: 550px) {
     height: 140px;
     width: 140px;
